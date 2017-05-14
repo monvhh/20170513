@@ -157,7 +157,7 @@
 
         .then .button {
             position: absolute;
-            top: 70%;
+            bottom: 8%;
             left: 0;
             right: 0;
             margin: auto;
@@ -223,10 +223,40 @@
 
         .last .text {
             position: absolute;
-            top: 15%;
             left: 10%;
             width: 80%;
-            height: 40%;
+            height: 8%;
+            opacity: 0;
+            -webkit-animation: zoomout 1s;
+            /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: zoomout 1s;
+            /* Firefox < 16 */
+            -ms-animation: zoomout 1s;
+            /* Internet Explorer */
+            -o-animation: zoomout 1s;
+            /* Opera < 12.1 */
+            animation: zoomout 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .last .text_1 {
+            top: 15%;
+            animation-delay: 0;
+        }
+
+        .last .text_2 {
+            top: 25%;
+            animation-delay: 0.3s;
+        }
+
+        .last .text_3 {
+            top: 35%;
+            animation-delay: 0.6s;
+        }
+
+        .last .text_4 {
+            top: 45%;
+            animation-delay: 0.9s;
         }
 
         .last .star {
@@ -368,31 +398,6 @@
             }
         }
 
-        .updown {
-            -webkit-animation: updown 1s;
-            /* Safari, Chrome and Opera > 12.1 */
-            -moz-animation: updown 1s;
-            /* Firefox < 16 */
-            -ms-animation: updown 1s;
-            /* Internet Explorer */
-            -o-animation: updown 1s;
-            /* Opera < 12.1 */
-            animation: updown 1s;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes updown {
-            0% {
-                opacity: 1;
-                transform: translate3d(0, -50%, 0);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translate3d(0%, 0, 0);
-            }
-        }
-
         .leftright {
             -webkit-animation: leftright 0.8s;
             /* Safari, Chrome and Opera > 12.1 */
@@ -406,6 +411,7 @@
             animation-fill-mode: forwards;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
+            animation-delay: 2s;
         }
 
         @keyframes leftright {
@@ -515,14 +521,28 @@
                 <img src="./img/star_red.png" width="100%" height="100%">
 
             </div>
-            <div class="text updown">
-                <img src="./img/present.png" width="100%" height="100%">
+            <div class="text text_1">
+                <img src="./img/last_1.png" width="100%" height="100%">
+            </div>
+            <div class="text text_2">
+                <img src="./img/last_2.png" width="100%" height="100%">
+            </div>
+            <div class="text text_3">
+                <img src="./img/last_3.png" width="100%" height="100%">
+            </div>
+            <div class="text text_4">
+                <img src="./img/last_4.png" width="100%" height="100%">
             </div>
             <div id="buyit" class=" button leftright">
                 <img src="./img/buyit.png" width="100%" height="100%">
             </div>
         </div>
-
+        <div style="height:0px;overflow:hidden;">
+            <audio id="car_audio" src="./audio/music.mp3" autoplay="" loop=""></audio>
+            <script>
+                document.getElementById('car_audio').play();
+            </script>
+        </div>
     </div>
 
 
@@ -592,55 +612,62 @@
                 location.href = "http://baidu.com";
             })
 
-            $('.clickarea_1').on('click', function () {
-                $('#main').removeClass('first').addClass('second');
+            $('.first .clickarea_1').on('click', function () {
                 setTimeout(function () {
-                    $('#main').removeClass('second').addClass('third');
-                    $.ajax({
-                        method: 'POST',
-                        url: './numbers.php',
-                        data: {
-                            freakynumber: 1
-                        },
-                        success: function () {
+                    $('#main').removeClass('first').addClass('second');
+                }, 0)
 
-                        }
-                    });
-                }, 2000);
             });
-            $('.clickarea_2').on('click', function () {
-                $('#main').removeClass('third').addClass('forth');
+            $('.container').on('click', '.second', function () {
+                $('#main').removeClass('second').addClass('third');
+                $.ajax({
+                    method: 'POST',
+                    url: './numbers.php',
+                    data: {
+                        freakynumber: 1
+                    },
+                    success: function () {
+
+                    }
+                });
+            })
+            $('.container').on('click', '.third .clickarea_2', function () {
                 setTimeout(function () {
-                    $('#main').removeClass('forth').addClass('fifth');
-                    $.ajax({
-                        method: 'POST',
-                        url: './numbers.php',
-                        data: {
-                            fashionnumber: 1
-                        },
-                        success: function () {
-
-                        }
-                    });
-                }, 2000);
+                    $('#main').removeClass('third').addClass('forth');
+                }, 0)
             });
-            $('.clickarea_3').on('click', function () {
-                $('#main').removeClass('fifth').addClass('sixth');
+            $('.container').on('click', '.forth', function () {
+                $('#main').removeClass('forth').addClass('fifth');
+                $.ajax({
+                    method: 'POST',
+                    url: './numbers.php',
+                    data: {
+                        fashionnumber: 1
+                    },
+                    success: function () {
+
+                    }
+                });
+            })
+            $('.container').on('click', '.fifth .clickarea_3', function () {
                 setTimeout(function () {
-                    $('#main').hide();
-                    $('#last').show();
-                    $.ajax({
-                        method: 'POST',
-                        url: './numbers.php',
-                        data: {
-                            giftnumber: 1
-                        },
-                        success: function () {
-
-                        }
-                    });
-                }, 1600);
+                    $('#main').removeClass('fifth').addClass('sixth');
+                }, 0)
             });
+            $('.container').on('click', '.sixth', function () {
+                $('#main').hide();
+                $('#last').show();
+                $.ajax({
+                    method: 'POST',
+                    url: './numbers.php',
+                    data: {
+                        giftnumber: 1
+                    },
+                    success: function () {
+
+                    }
+                });
+            })
         })
 
         $(window).on('load', function () {
