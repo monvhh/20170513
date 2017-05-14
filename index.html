@@ -446,7 +446,7 @@
                 </div>
             </div>
             <div class="text">
-                败家啊<br>
+                <span id="loading-text">来啊</span><br>
                 <span id="loading-num">0</span>%
             </div>
         </div>
@@ -528,13 +528,15 @@
 
 
     <script>
-        var num = 0;
+        var num = 0, txtArr = ['来啊', '败家啊', '反正有返钱可以花'];
         $(function () {
-
             var loading = setInterval(function () {
                 if (num >= 99) {
                     clearInterval(loading);
                     return;
+                }
+                if (num % 5 == 0) {
+                    $('#loading-text').html(txtArr[num / 5 % 3]);
                 }
 
                 if (num >= 80) {
@@ -556,39 +558,10 @@
 
                 }
             });
-        });
 
-        $(window).ready(function () {
-            var loading = setInterval(function () {
-                if (num >= 99) {
-                    clearInterval(loading);
-                    return;
-                }
 
-                if (num >= 80) {
-                    $('#loading-num').html(++num);
-                } else {
-                    $('#cart_comp').css('left', -82 + num + '%')
-                    $('#loading-num').html(++num);
-                }
 
-            }, 10);
-
-            setTimeout(function () {
-                $('#loading').hide();
-                $('#then').show();
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        homenumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-            }, 500);
-
+            //bind event
             $('#see').on('click', function () {
                 $('#then').hide();
                 $('#main').show();
@@ -668,8 +641,38 @@
                     });
                 }, 1600);
             });
+        })
 
-        });
+        $(window).on('load', function () {
+            var loading = setInterval(function () {
+                if (num >= 99) {
+                    clearInterval(loading);
+                    //跳转
+                    $('#loading').hide();
+                    $('#then').show();
+                    $.ajax({
+                        method: 'POST',
+                        url: './numbers.php',
+                        data: {
+                            homenumber: 1
+                        },
+                        success: function () {
+
+                        }
+                    });
+
+                    return;
+                }
+
+                if (num >= 80) {
+                    $('#loading-num').html(++num);
+                } else {
+                    $('#cart_comp').css('left', -82 + num + '%')
+                    $('#loading-num').html(++num);
+                }
+
+            }, 1);
+        })
     </script>
 
 </body>
