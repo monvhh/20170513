@@ -840,6 +840,9 @@
                     $('#main').removeClass('third').addClass('forth');
                 }, 0)
             });
+            $('.container').on('mousedown', '.second', function (event) {
+                event.preventDefault();
+            });
             $('.container').on('swipeUp', '.forth', function () {
                 $('#main').removeClass('forth').addClass('fifth');
                 $.ajax({
@@ -857,6 +860,9 @@
                 setTimeout(function () {
                     $('#main').removeClass('fifth').addClass('sixth');
                 }, 0)
+            });
+            $('.container').on('mousedown', '.second', function (event) {
+                event.preventDefault();
             });
             $('.container').on('swipeUp', '.sixth', function () {
                 $('#main').hide();
