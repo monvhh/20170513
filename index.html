@@ -426,6 +426,22 @@
                 transform: translate3d(-10%, 0, 0);
             }
         }
+
+        .musicicon {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .musicon {
+            position: absolute;
+            bottom: 10%;
+            right: 2%;
+            width: 15px;
+            height: 15px;
+        }
     </style>
     <script src="./js/zepto.min.js"></script>
 
@@ -542,6 +558,12 @@
                 document.getElementById('car_audio').play();
             </script>
         </div>
+        <div id="musicicon" class="musicicon">
+            <img src="./img/on_off.png" width="100%" height="100%">
+        </div>
+        <div class="musicon shining">
+            <img src="./img/icon_audio_sign.png" width="100%" height="100%">
+        </div>
     </div>
 
 
@@ -608,7 +630,7 @@
                     }
                 });
                 //跳转商城
-                location.href = "http://baidu.com";
+                location.href = "http://www.judamax.com/?link=hruiheweige";
             })
 
             $('.first .clickarea_1').on('click', function () {
@@ -666,6 +688,16 @@
 
                     }
                 });
+            })
+
+            $('#musicicon').on('click', function () {
+                $('.musicon').toggle();
+                var bool = ($('.musicon').css('display') == 'none');
+                if (bool) {
+                    document.getElementById('car_audio').pause();
+                } else {
+                    document.getElementById('car_audio').play();
+                }
             })
         })
 
