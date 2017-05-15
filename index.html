@@ -177,17 +177,20 @@
 
         .main .arrow {
             position: absolute;
-            bottom: 2%;
+            bottom: 1%;
             left: 0;
             right: 0;
             margin: auto;
-            width: 6%;
-            height: 10%;
+            width: 5%;
+            height: 8%;
         }
-        .main.first .arrow,.main.third .arrow,.main.fifth .arrow{
+
+        .main.first .arrow,
+        .main.third .arrow,
+        .main.fifth .arrow {
             display: none;
         }
-        
+
 
         .main.first {
             background-image: url(./img/1.gif);
@@ -542,6 +545,7 @@
                 transform: translate3d(0%, 0, 0);
             }
         }
+
         .updown-shake {
             -webkit-animation: updown-shake 1s;
             /* Safari, Chrome and Opera > 12.1 */
@@ -560,15 +564,15 @@
         @keyframes updown-shake {
             0% {
                 opacity: 1;
-                transform: translate3d(0, -50%, 0);
+                transform: translate3d(0, -30%, 0);
             }
             50% {
                 opacity: 1;
                 transform: translate3d(0%, 0, 0);
             }
-            100%{
+            100% {
                 opacity: 1;
-                transform: translate3d(0%, -50%, 0);
+                transform: translate3d(0%, -30%, 0);
             }
         }
 
@@ -616,7 +620,7 @@
                 <span id="loading-num">0</span>%
             </div>
         </div>
-        <div id="then" class="view then"  style="display:none;">
+        <div id="then" class="view then" style="display:none;">
             <div class="star star_1 shining">
                 <img src="./img/star_red.png" width="100%" height="100%">
             </div>
@@ -742,6 +746,9 @@
 
 
     <script>
+        document.addEventListener('touchmove', function (event) {
+            event.preventDefault();
+        }, false);
         var num = 0, txtArr = ['来啊', '败家啊', '反正有返钱可以花'];
         $(function () {
             var loading = setInterval(function () {
