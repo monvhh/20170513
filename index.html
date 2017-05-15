@@ -542,6 +542,35 @@
                 transform: translate3d(0%, 0, 0);
             }
         }
+        .updown-shake {
+            -webkit-animation: updown-shake 1s;
+            /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: updown-shake 1s;
+            /* Firefox < 16 */
+            -ms-animation: updown-shake 1s;
+            /* Internet Explorer */
+            -o-animation: updown-shake 1s;
+            /* Opera < 12.1 */
+            animation: updown-shake 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes updown-shake {
+            0% {
+                opacity: 1;
+                transform: translate3d(0, -50%, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: translate3d(0%, 0, 0);
+            }
+            100%{
+                opacity: 1;
+                transform: translate3d(0%, -50%, 0);
+            }
+        }
 
         .musicicon {
             position: absolute;
@@ -617,7 +646,7 @@
             <div class="clickarea_1"></div>
             <div class="clickarea_2"></div>
             <div class="clickarea_3"></div>
-            <div class="arrow">
+            <div class="arrow updown-shake">
                 <img src="./img/arrow.png" width="100%" height="100%">
             </div>
         </div>
@@ -801,7 +830,7 @@
                     $('#main').removeClass('third').addClass('forth');
                 }, 0)
             });
-            $('.container').on('click', '.forth', function () {
+            $('.container').on('swipeUp', '.forth', function () {
                 $('#main').removeClass('forth').addClass('fifth');
                 $.ajax({
                     method: 'POST',
@@ -819,7 +848,7 @@
                     $('#main').removeClass('fifth').addClass('sixth');
                 }, 0)
             });
-            $('.container').on('click', '.sixth', function () {
+            $('.container').on('swipeUp', '.sixth', function () {
                 $('#main').hide();
                 $('#last').show();
                 $.ajax({
