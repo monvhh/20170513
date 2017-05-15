@@ -157,14 +157,37 @@
 
         .then .button {
             position: absolute;
-            bottom: 8%;
+            bottom: 10%;
             left: 0;
             right: 0;
             margin: auto;
             z-index: 19;
             width: 40%;
         }
+        /*.then .comment{
+            color: red;
+            position: absolute;
+            bottom: 8%;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            text-align: center;
+            font-size: 14px;
+        }*/
 
+        .main .arrow {
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 6%;
+            height: 10%;
+        }
+        .main.first .arrow,.main.third .arrow,.main.fifth .arrow{
+            display: none;
+        }
+        
 
         .main.first {
             background-image: url(./img/1.gif);
@@ -215,7 +238,7 @@
         }
 
         .last {
-            background-image: url('./img/lastbac.png');
+            background-image: url('./img/present_bac.png');
             width: 80%;
             height: 80%;
             margin: 10%;
@@ -223,9 +246,9 @@
 
         .last .text {
             position: absolute;
-            left: 10%;
-            width: 80%;
-            height: 8%;
+            left: 13%;
+            width: 75%;
+            height: 7%;
             opacity: 0;
             -webkit-animation: zoomout 1s;
             /* Safari, Chrome and Opera > 12.1 */
@@ -237,6 +260,7 @@
             /* Opera < 12.1 */
             animation: zoomout 1s;
             animation-fill-mode: forwards;
+            z-index: 9;
         }
 
         .last .text_1 {
@@ -245,18 +269,28 @@
         }
 
         .last .text_2 {
-            top: 25%;
+            top: 23%;
             animation-delay: 0.3s;
         }
 
         .last .text_3 {
-            top: 35%;
+            top: 31%;
             animation-delay: 0.6s;
         }
 
         .last .text_4 {
-            top: 45%;
+            top: 39%;
             animation-delay: 0.9s;
+        }
+
+        .last .text_5 {
+            top: 47%;
+            animation-delay: 1.2s;
+        }
+
+        .last .text_6 {
+            top: 55%;
+            animation-delay: 1.5s;
         }
 
         .last .star {
@@ -299,6 +333,64 @@
             position: absolute;
             top: 35%;
             left: 94%;
+        }
+
+        .last .present {
+            position: absolute;
+            transition: all 0.5 linear 0;
+            opacity: 0
+        }
+
+        .last .present.top {
+            top: -150%;
+        }
+
+        .last .present_1 {
+            top: 64%;
+            left: 29%;
+            width: 22%;
+            z-index: 5;
+            animation-delay: 0.8s;
+        }
+
+        .last .present_6 {
+            top: 63%;
+            left: 44%;
+            width: 22%;
+            z-index: 4;
+            animation-delay: 1s;
+        }
+
+        .last .present_2 {
+            top: 75%;
+            left: 24%;
+            width: 47%;
+            z-index: 3;
+            animation-delay: 0.6s;
+        }
+
+        .last .present_3 {
+            top: 79%;
+            left: 17%;
+            width: 58%;
+            z-index: 2;
+            animation-delay: 0.4s;
+        }
+
+        .last .present_4 {
+            top: 82%;
+            left: 16%;
+            width: 68%;
+            z-index: 1;
+            animation-delay: 0.2s;
+        }
+
+        .last .present_5 {
+            top: 72%;
+            left: 51%;
+            width: 33%;
+            z-index: 6;
+            animation-delay: 1.2s;
         }
 
         .last .button {
@@ -427,6 +519,30 @@
             }
         }
 
+        .updown {
+            -webkit-animation: updown 1s;
+            /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: updown 1s;
+            /* Firefox < 16 */
+            -ms-animation: updown 1s;
+            /* Internet Explorer */
+            -o-animation: updown 1s;
+            /* Opera < 12.1 */
+            animation: updown 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes updown {
+            0% {
+                opacity: 1;
+                transform: translate3d(0, -1000%, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0%, 0, 0);
+            }
+        }
+
         .musicicon {
             position: absolute;
             bottom: 5%;
@@ -444,7 +560,7 @@
         }
     </style>
     <script src="./js/zepto.min.js"></script>
-
+    <script src="./js/touch.js"></script>
 </head>
 
 <body>
@@ -471,7 +587,7 @@
                 <span id="loading-num">0</span>%
             </div>
         </div>
-        <div id="then" class="view then" style="display:none;">
+        <div id="then" class="view then"  style="display:none;">
             <div class="star star_1 shining">
                 <img src="./img/star_red.png" width="100%" height="100%">
             </div>
@@ -495,11 +611,15 @@
             <div id="see" class=" button leftright">
                 <img src="./img/see.png" width="100%" height="100%">
             </div>
+            <!--<div class="comment">每次活动只能三选一享受一次</div>-->
         </div>
         <div id="main" class="view main first" style="display:none;">
             <div class="clickarea_1"></div>
             <div class="clickarea_2"></div>
             <div class="clickarea_3"></div>
+            <div class="arrow">
+                <img src="./img/arrow.png" width="100%" height="100%">
+            </div>
         </div>
         <div style="display:none;">
             <img src="./img/1.gif" width="100%" height="100%">
@@ -510,7 +630,7 @@
             <img src="./img/6.gif" width="100%" height="100%">
             <img src="./img/bac.jpg" width="100%" height="100%">
             <img src="./img/thenbac.png" width="100%" height="100%">
-            <img src="./img/lastbac.png" width="100%" height="100%">
+            <img src="./img/present_bac.png" width="100%" height="100%">
         </div>
         <div id="last" class="view last" style="display:none;">
             <div class="star star_1 shining">
@@ -547,6 +667,30 @@
             </div>
             <div class="text text_4">
                 <img src="./img/last_4.png" width="100%" height="100%">
+            </div>
+            <div class="text text_5">
+                <img src="./img/last_5.png" width="100%" height="100%">
+            </div>
+            <div class="text text_6">
+                <img src="./img/last_6.png" width="100%" height="100%">
+            </div>
+            <div class="present present_1 updown">
+                <img src="./img/present_1.png" width="100%" height="100%">
+            </div>
+            <div class="present present_2 updown">
+                <img src="./img/present_2.png" width="100%" height="100%">
+            </div>
+            <div class="present present_3 updown">
+                <img src="./img/present_3.png" width="100%" height="100%">
+            </div>
+            <div class="present present_4 updown">
+                <img src="./img/present_4.png" width="100%" height="100%">
+            </div>
+            <div class="present present_5 updown">
+                <img src="./img/present_5.png" width="100%" height="100%">
+            </div>
+            <div class="present present_6 updown">
+                <img src="./img/present_1.png" width="100%" height="100%">
             </div>
             <div id="buyit" class=" button leftright">
                 <img src="./img/buyit.png" width="100%" height="100%">
@@ -639,7 +783,7 @@
                 }, 0)
 
             });
-            $('.container').on('click', '.second', function () {
+            $('.container').on('swipeUp', '.second', function () {
                 $('#main').removeClass('second').addClass('third');
                 $.ajax({
                     method: 'POST',
@@ -702,6 +846,7 @@
         })
 
         $(window).on('load', function () {
+
             var loading = setInterval(function () {
                 if (num >= 99) {
                     clearInterval(loading);
