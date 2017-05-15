@@ -746,9 +746,9 @@
 
 
     <script>
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-        }, false);
+        // document.addEventListener('touchmove', function (event) {
+        //     event.preventDefault();
+        // }, false);
         var num = 0, txtArr = ['来啊', '败家啊', '反正有返钱可以花'];
         $(function () {
             var loading = setInterval(function () {
@@ -818,6 +818,9 @@
                     $('#main').removeClass('first').addClass('second');
                 }, 0)
 
+            });
+            $('.container').on('mousedown', '.second', function (event) {
+                event.preventDefault();
             });
             $('.container').on('swipeUp', '.second', function () {
                 $('#main').removeClass('second').addClass('third');
