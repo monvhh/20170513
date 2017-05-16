@@ -733,6 +733,9 @@
             <audio id="car_audio" src="./audio/music.mp3" autoplay="autoplay" loop></audio>
             <script>
                 document.getElementById('car_audio').play();
+                // wx.ready(function () {
+                //     document.getElementById('car_audio').play();
+                // })
             </script>
         </div>
         <div id="musicicon" class="musicicon">
@@ -746,181 +749,175 @@
 
 
     <script>
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-        }, false);
-        var num = 0, txtArr = ['来啊', '败家啊', '反正有返钱可以花'];
-        $(function () {
-            var loading = setInterval(function () {
-                if (num >= 99) {
-                    clearInterval(loading);
-                    return;
-                }
-                if (num % 5 == 0) {
-                    $('#loading-text').html(txtArr[num / 5 % 3]);
-                }
+                document.addEventListener('touchmove', function (event) {
+                    event.preventDefault();
+                }, false);
+                var num = 0, txtArr = ['来啊', '败家啊', '反正有返钱可以花'];
+                $(function () {
+                    var loading = setInterval(function () {
+                        if (num >= 99) {
+                            clearInterval(loading);
+                            return;
+                        }
+                        if (num % 5 == 0) {
+                            $('#loading-text').html(txtArr[num / 5 % 3]);
+                        }
 
-                if (num >= 80) {
-                    $('#loading-num').html(++num);
-                } else {
-                    $('#cart_comp').css('left', -82 + num + '%')
-                    $('#loading-num').html(++num);
-                }
+                        if (num >= 80) {
+                            $('#loading-num').html(++num);
+                        } else {
+                            $('#cart_comp').css('left', -82 + num + '%')
+                            $('#loading-num').html(++num);
+                        }
 
-            }, 100)
+                    }, 100)
 
-            $.ajax({
-                method: 'POST',
-                url: './numbers.php',
-                data: {
-                    loadnumber: 1
-                },
-                success: function () {
-
-                }
-            });
-
-
-
-            //bind event
-            $('#see').on('click', function () {
-                $('#then').hide();
-                $('#main').show();
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        bestienumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-            })
-
-            $('#buyit').on('click', function () {
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        locationnumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-                //跳转商城
-                location.href = "http://www.judamax.com/?link=hruiheweige";
-            })
-
-            $('.first .clickarea_1').on('click', function () {
-                setTimeout(function () {
-                    $('#main').removeClass('first').addClass('second');
-                }, 0)
-
-            });
-            $('.container').on('mousedown', '.second', function (event) {
-                event.preventDefault();
-            });
-            $('.container').on('swipeUp', '.second', function () {
-                $('#main').removeClass('second').addClass('third');
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        freakynumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-            })
-            $('.container').on('click', '.third .clickarea_2', function () {
-                setTimeout(function () {
-                    $('#main').removeClass('third').addClass('forth');
-                }, 0)
-            });
-            $('.container').on('mousedown', '.forth', function (event) {
-                event.preventDefault();
-            });
-            $('.container').on('swipeUp', '.forth', function () {
-                $('#main').removeClass('forth').addClass('fifth');
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        fashionnumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-            })
-            $('.container').on('click', '.fifth .clickarea_3', function () {
-                setTimeout(function () {
-                    $('#main').removeClass('fifth').addClass('sixth');
-                }, 0)
-            });
-            $('.container').on('mousedown', '.sixth', function (event) {
-                event.preventDefault();
-            });
-            $('.container').on('swipeUp', '.sixth', function () {
-                $('#main').hide();
-                $('#last').show();
-                $.ajax({
-                    method: 'POST',
-                    url: './numbers.php',
-                    data: {
-                        giftnumber: 1
-                    },
-                    success: function () {
-
-                    }
-                });
-            })
-
-            $('#musicicon').on('click', function () {
-                $('.musicon').toggle();
-                var bool = ($('.musicon').css('display') == 'none');
-                if (bool) {
-                    document.getElementById('car_audio').pause();
-                } else {
-                    document.getElementById('car_audio').play();
-                }
-            })
-        })
-
-        $(window).on('load', function () {
-
-            var loading = setInterval(function () {
-                if (num >= 99) {
-                    clearInterval(loading);
-                    //跳转
-                    $('#loading').hide();
-                    $('#then').show();
                     $.ajax({
                         method: 'POST',
                         url: './numbers.php',
                         data: {
-                            homenumber: 1
+                            loadnumber: 1
                         },
                         success: function () {
 
                         }
                     });
 
-                    return;
-                }
 
-                if (num >= 80) {
-                    $('#loading-num').html(++num);
-                } else {
-                    $('#cart_comp').css('left', -82 + num + '%')
-                    $('#loading-num').html(++num);
-                }
 
-            }, 1);
-        })
+                    //bind event
+                    $('#see').on('click', function () {
+                        $('#then').hide();
+                        $('#main').show();
+                        $.ajax({
+                            method: 'POST',
+                            url: './numbers.php',
+                            data: {
+                                bestienumber: 1
+                            },
+                            success: function () {
+
+                            }
+                        });
+                    })
+
+                    $('#buyit').on('click', function () {
+                        $.ajax({
+                            method: 'POST',
+                            url: './numbers.php',
+                            data: {
+                                locationnumber: 1
+                            },
+                            success: function () {
+
+                            }
+                        });
+                        //跳转商城
+                        location.href = "http://www.judamax.com/?link=hruiheweige";
+                    })
+
+                    $('.first .clickarea_1').on('click', function () {
+                        setTimeout(function () {
+                            $('#main').removeClass('first').addClass('second');
+                        }, 0)
+
+                    });
+                   
+                    $('.container').on('swipeUp', '.second', function () {
+                        $('#main').removeClass('second').addClass('third');
+                        $.ajax({
+                            method: 'POST',
+                            url: './numbers.php',
+                            data: {
+                                freakynumber: 1
+                            },
+                            success: function () {
+
+                            }
+                        });
+                    })
+                    $('.container').on('click', '.third .clickarea_2', function () {
+                        setTimeout(function () {
+                            $('#main').removeClass('third').addClass('forth');
+                        }, 0)
+                    });
+                    
+                    $('.container').on('swipeUp', '.forth', function () {
+                        $('#main').removeClass('forth').addClass('fifth');
+                        $.ajax({
+                            method: 'POST',
+                            url: './numbers.php',
+                            data: {
+                                fashionnumber: 1
+                            },
+                            success: function () {
+
+                            }
+                        });
+                    })
+                    $('.container').on('click', '.fifth .clickarea_3', function () {
+                        setTimeout(function () {
+                            $('#main').removeClass('fifth').addClass('sixth');
+                        }, 0)
+                    });
+                    
+                    $('.container').on('swipeUp', '.sixth', function () {
+                        $('#main').hide();
+                        $('#last').show();
+                        $.ajax({
+                            method: 'POST',
+                            url: './numbers.php',
+                            data: {
+                                giftnumber: 1
+                            },
+                            success: function () {
+
+                            }
+                        });
+                    })
+
+                    $('#musicicon').on('click', function () {
+                        $('.musicon').toggle();
+                        var bool = ($('.musicon').css('display') == 'none');
+                        if (bool) {
+                            document.getElementById('car_audio').pause();
+                        } else {
+                            document.getElementById('car_audio').play();
+                        }
+                    })
+                })
+
+                $(window).on('load', function () {
+
+                    var loading = setInterval(function () {
+                        if (num >= 99) {
+                            clearInterval(loading);
+                            //跳转
+                            $('#loading').hide();
+                            $('#then').show();
+                            $.ajax({
+                                method: 'POST',
+                                url: './numbers.php',
+                                data: {
+                                    homenumber: 1
+                                },
+                                success: function () {
+
+                                }
+                            });
+
+                            return;
+                        }
+
+                        if (num >= 80) {
+                            $('#loading-num').html(++num);
+                        } else {
+                            $('#cart_comp').css('left', -82 + num + '%')
+                            $('#loading-num').html(++num);
+                        }
+
+                    }, 1);
+                })
     </script>
 
 </body>
